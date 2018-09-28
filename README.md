@@ -32,11 +32,74 @@ Plugins allow you to add extra functionality to Vim.  You typically will use a p
 
 FYI `<leader>` typically refers to the `\` character in VIM 
 
+#### Navigation
+`<ctrl> o` - previous location
+
+`<ctrl> i` - previous location
+
+`:e app/models/user.rb` - navigate to user.rb
+
+
+`<ctrl> f` - page down
+
+`<ctrl> b` - page up
+
+`<shift> g` - bottom of page
+
+`:1`        - line 1
+
+`e`         - navigate past word
+
+`b`         - navigate back word
+
+`<shift> $` - navigate end of line
+
+`<shift> ^` - navigate beginning of line
+
+`h`         - left
+
+`j`         - up
+
+`k`         - down
+
+`l`         - right
+
+
+#### Editing
+
+`i`         - enter insert mode
+
+`<esc>`     - leave insert mode
+
+`o`         - enter insert mode on next line
+
+`<shift> o` - enter insert mode on previous line
+
+`dd`        - cut line
+
+`5dd`       - cut 5 lines
+
+`v`         - enter visual mode
+
+`<esc>`     - leave visual mode
+
+`x`         - cut character or highlighted
+
+`daw`       - delete word
+
+`p`         - paste
+
+
 #### Tests
 
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
-nmap <C-n> :NERDTreeToggle<CR>
+`nmap <silent> <leader>t :TestNearest<CR>`
+
+`nmap <silent> <leader>T :TestFile<CR>`
+
+`nmap <silent> <leader>a :TestSuite<CR>`
+
+`nmap <silent> <leader>l :TestLast<CR>`
+
+`nmap <silent> <leader>g :TestVisit<CR>`
+
+`nmap <C-n> :NERDTreeToggle<CR>`
