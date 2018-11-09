@@ -1,58 +1,132 @@
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
+set nocompatible
+filetype off
 
-set smartindent
-set expandtab
-set tabstop=2
-set softtabstop=2 " default to 2 spaces for the soft tab
-set shiftwidth=2
+call plug#begin('~/.vim/plugged')
 
-" turn on the mouse
-set mouse=a
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Yggdroot/indentLine'
+Plug 'isRuslan/vim-es6'
+Plug 'vim-ruby/vim-ruby'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-rails'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'KeitaNakamura/neodark.vim'
+Plug 'wincent/command-t'
+Plug 'thoughtbot/vim-rspec'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'janko-m/vim-test'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'chriskempson/base16-vim'
+" Color schemes
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ayu-theme/ayu-vim' " ayu theme
+Plug 'mhartington/oceanic-next'
+Plug 'crusoexia/vim-monokai'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 
-set relativenumber  "use relative line numbers
-set number "but still show the current absolute line num
+Plug 'w0rp/ale'
 
-" resize splits when inactive
-" set winwidth=84
-" set winheight=5
-" set winminheight=5
-" set winheight=999
+" Vim snippets
+" Track the engine.
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-" matches all [{(
-set showmatch
+call plug#end()
 
-" improves vim search
-set incsearch
+syntax enable
+
+set termguicolors
+
+" Want utf8 at all times
+set termencoding=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+
+set ruler                      " Always show current position
+set cmdheight=1                " Height of the command bar
+set laststatus=2               " Always show the status line
+
+set tabstop=2       " The width of a TAB is set to 4.
+                    " Still it is a \t. It is just that
+                    " Vim will interpret it to be having
+                    " a width of 4.
+
+set shiftwidth=2    " Indents will have a width of 4
+set softtabstop=2   " Sets the number of columns for a TAB
+set expandtab       " Expand TABs to spaces
+
+" Lovely linenumbers
+set nu
+
+:set relativenumber
+":set norelativenumber  " turn relative line numbers off
+":set relativenumber!   " toggle relative line numbers
+
+" Searching
 set hlsearch
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" For backspace
+set backspace=indent,eol,start
 
-let NERDTreeDirArrows=0
-" after building your container run this at vim command line and restart vim 
-" :helptags ~/.vim/bundle/ctrlp.vim/doc
+" NERDTree options
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeMinimalUI = 1 " Does not show Press ? for help 
+
+" CtrlP new shortcut
+" map ff :CtrlP<.><cr>
+" Command T plugin
+"map ff :CommandT<CR>
+nmap <C-p> :CommandT<CR>
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+let g:airline_theme='oceanicnext'
+" Neodark theme: If you want to change background, set the 6 digit color code:
+"colorscheme neodark
+"colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night-Eighties
+colorscheme OceanicNext
+"let g:neodark#background = '#202020'
+"let g:neodark#use_256color = 1 " default: 0
+"let g:neodark#terminal_transparent = 1 " default: 0
+"let g:neodark#solid_vertsplit = 1 " default: 0
+
+" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore. If a custom listing command is being used, exclusions are ignored:
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip    " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=*/node_modules/*     " Don't search inside Node.js modules
+set wildignore+=*/public/packs     " Don't search inside Node.js modules
+set wildignore+=*/public/packs-test     " Don't search inside Node.js modules
+  "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+  "let g:ctrlp_custom_ignore = {
+  "  \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules\|vendor|tmp)$',
+  "  \ 'file': '\v\.(exe|so|dll)$',
+  "  \ 'link': 'some_bad_symbolic_links',
+  "  \ }
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+" vim-rspec
+let g:rspec_command = "bundle exec rspec {spec}"
 
 
-" Testing
+" Rspec 
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
-nmap <C-n> :NERDTreeToggle<CR>
 
-" Use bin/rspec for fast Spring tests
-let g:rspec_command = '!bundle exec bin/rspec {spec}'
+nmap <S-Enter> O<Esc>
 
-
-
-" coverage.vim
-let g:coverage_json_report_path = 'coverage/coverage.json'
-let g:coverage_sign_covered = '⦿'
-let g:coverage_interval = 5000
-
-call plug#begin()
-Plug 'ruanyl/coverage.vim'
-Plug 'janko-m/vim-test'
-call plug#end()
+" Fix files with prettier, and then ESLint.
+let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
