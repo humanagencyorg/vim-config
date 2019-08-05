@@ -31,6 +31,12 @@ Plug 'tpope/vim-surround'
 
 Plug 'w0rp/ale'
 
+" Fulltext search
+" Requirements:
+" brew install the_silver_searcher
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 " Vim snippets
 " Track the engine.
 Plug 'SirVer/ultisnips'
