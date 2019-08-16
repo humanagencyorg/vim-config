@@ -25,7 +25,8 @@ Plugins allow you to add extra functionality to Vim.  You typically will use a p
 * [vim-sensible](https://github.com/tpope/vim-sensible) - the perfect default config for vim
 * [vim-test](https://github.com/janko-m/vim-test) - keyboard shortcuts for running tests
 * [vim-textobj-rubyblock](https://github.com/nelstrom/vim-textobj-rubyblock) - ability to select an entire ruby block
-* 
+* [fzf.vim](https://github.com/junegunn/fzf.vim) - fulltext search 
+*
 
 
 ### Keyboard Shortcuts
@@ -63,6 +64,8 @@ FYI `<leader>` typically refers to the `\` character in VIM
 `k`         - down
 
 `l`         - right
+
+`:Ag search_pattern` - fulltext search
 
 
 #### Editing
