@@ -126,6 +126,9 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
+" NerdTree
+nnoremap <silent> <Leader>v :NERDTreeFind<CR> " open NerdTree on the file you’re editing
+
 nmap <S-Enter> O<Esc>
 
 " Fix files with prettier, and then ESLint.
