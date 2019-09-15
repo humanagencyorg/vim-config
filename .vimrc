@@ -1,6 +1,7 @@
 set nocompatible
 filetype off
 
+execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -27,7 +28,9 @@ Plug 'ayu-theme/ayu-vim' " ayu theme
 Plug 'mhartington/oceanic-next'
 Plug 'crusoexia/vim-monokai'
 Plug 'jiangmiao/auto-pairs'
+Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 
 Plug 'w0rp/ale'
 
@@ -58,6 +61,7 @@ set tabstop=2       " The width of a TAB is set to 4.
 
 set shiftwidth=2    " Indents will have a width of 4
 set softtabstop=2   " Sets the number of columns for a TAB
+set tabstop=2   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
 
 " Lovely linenumbers
@@ -130,3 +134,6 @@ nmap <S-Enter> O<Esc>
 
 " Fix files with prettier, and then ESLint.
 let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
+
+" Remove trailing whitespaces
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
