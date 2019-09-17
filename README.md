@@ -106,3 +106,7 @@ FYI `<leader>` typically refers to the `\` character in VIM
 `nmap <silent> <leader>g :TestVisit<CR>`
 
 `nmap <C-n> :NERDTreeToggle<CR>`
+
+### NerdTree
+
+`nnoremap <silent> <Leader>v :NERDTreeFind<CR>` - open NerdTree on the file you’re editing
