@@ -1,6 +1,11 @@
 set nocompatible
 filetype off
 
+" Enable per-project .vimrc configuration files
+set exrc
+" Disable unsafe commands in your project-specific .vimrc files
+set secure
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
