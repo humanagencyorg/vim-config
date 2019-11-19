@@ -42,6 +42,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+" This plugin provides automatic folding for Rspec files and defs
+Plug 'vim-utils/vim-ruby-fold'
+
 call plug#end()
 
 syntax enable
