@@ -28,6 +28,10 @@ Plugins allow you to add extra functionality to Vim.  You typically will use a p
 * [fzf.vim](https://github.com/junegunn/fzf.vim) - fulltext search 
 *
 
+### TMUX Integration
+If you like, you can run your tests in a separate TMUX pane.  When you initially run your tests, you will be prompted to choose what pane you would like to see the test results in.
+
+By pressing `prefix q` (with `prefix` being your TMUX leader key), you can see the numbers on each pane.
 
 ### Keyboard Shortcuts
 
