@@ -4,11 +4,13 @@ This is a basic Vim setup that can be used to get you started using the tool.
 
 ## Instructions
 
-1. Download your color scheme.  [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) is a great collection of color schemes.  The [Tomorrow Night Eighties](https://github.com/chriskempson/tomorrow-theme/blob/master/OS%20X%20Terminal/Tomorrow%20Night%20Eighties.terminal) is my personal favorite.
+1. Install `vim-plug` manager https://github.com/junegunn/vim-plug. After the installation you will be able to run `:PlugInstall` to get the plugins from `.vimrc` configuration file. 
 
-2. Setup your `.vimrc`.  Here is an example [`.vimrc`]() that sets up basic ruby plugins, line indents, etc.
+2. Download your color scheme.  [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) is a great collection of color schemes.  The [Tomorrow Night Eighties](https://github.com/chriskempson/tomorrow-theme/blob/master/OS%20X%20Terminal/Tomorrow%20Night%20Eighties.terminal) is my personal favorite.
 
-3. Restart any open Vim instances for the changes to take affect.
+3. Setup your `.vimrc`.  Here is an example [`.vimrc`]() that sets up basic ruby plugins, line indents, etc.
+
+4. Restart any open Vim instances for the changes to take affect.
 
 ## Reference
 
