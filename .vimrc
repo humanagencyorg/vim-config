@@ -132,6 +132,11 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
+
+" Runs your tests in an alternate Pane
+Plug 'jgdavey/tslime.vim'
+let test#strategy = "tslime"
+
 " NerdTree
 nnoremap <silent> <Leader>v :NERDTreeFind<CR> " open NerdTree on the file you’re editing
 
