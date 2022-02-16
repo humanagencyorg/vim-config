@@ -20,6 +20,7 @@ Plug 'janko-m/vim-test'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-runner'
 Plug 'chriskempson/base16-vim'
 " Color schemes
 Plug 'drewtempelmeyer/palenight.vim'
@@ -132,11 +133,6 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-
-" Runs your tests in an alternate Pane
-Plug 'jgdavey/tslime.vim'
-let test#strategy = "tslime"
-
 " NerdTree
 nnoremap <silent> <Leader>v :NERDTreeFind<CR> " open NerdTree on the file you’re editing
 
@@ -144,3 +140,20 @@ nmap <S-Enter> O<Esc>
 
 " Fix files with prettier, and then ESLint.
 let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
+
+" VIM TMUX Integration (https://thoughtbot.com/upcase/videos/tmux-vim-integration)
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+" Run tests in a TMUX window
+let g:rspec_command = "VtrSendCommandToRunner! rspec {spec}"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>f :VtrFocusRunner<cr>
