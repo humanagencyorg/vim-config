@@ -4,7 +4,7 @@ This is a basic Vim setup that can be used to get you started using the tool.
 
 ## Instructions
 
-1. Download your color scheme.  [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) is a great collection of color schemes.  The [Tomorrow Night Eighties](https://github.com/chriskempson/tomorrow-theme/blob/master/OS%20X%20Terminal/Tomorrow%20Night%20Eighties.terminal) is my personal favorite.
+1. Download your color scheme.  [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) (moved [here](git@github.com:chriskempson/base16.git)) is a great collection of color schemes.  The [Tomorrow Night Eighties](https://github.com/chriskempson/tomorrow-theme/blob/master/OS%20X%20Terminal/Tomorrow%20Night%20Eighties.terminal) is my personal favorite.
 
 2. Setup your `.vimrc`.  Here is an example [`.vimrc`]() that sets up basic ruby plugins, line indents, etc.
 
@@ -25,8 +25,13 @@ Plugins allow you to add extra functionality to Vim.  You typically will use a p
 * [vim-sensible](https://github.com/tpope/vim-sensible) - the perfect default config for vim
 * [vim-test](https://github.com/janko-m/vim-test) - keyboard shortcuts for running tests
 * [vim-textobj-rubyblock](https://github.com/nelstrom/vim-textobj-rubyblock) - ability to select an entire ruby block
-* 
+* [fzf.vim](https://github.com/junegunn/fzf.vim) - fulltext search 
+*
 
+### TMUX Integration
+If you like, you can run your tests in a separate TMUX pane.  When you initially run your tests, you will be prompted to choose what pane you would like to see the test results in.
+
+By pressing `prefix q` (with `prefix` being your TMUX leader key), you can see the numbers on each pane.
 
 ### Keyboard Shortcuts
 
@@ -63,6 +68,8 @@ FYI `<leader>` typically refers to the `\` character in VIM
 `k`         - down
 
 `l`         - right
+
+`:Ag search_pattern` - fulltext search
 
 
 #### Editing
@@ -103,3 +110,7 @@ FYI `<leader>` typically refers to the `\` character in VIM
 `nmap <silent> <leader>g :TestVisit<CR>`
 
 `nmap <C-n> :NERDTreeToggle<CR>`
+
+### NerdTree
+
+`nnoremap <silent> <Leader>v :NERDTreeFind<CR>` - open NerdTree on the file you’re editing

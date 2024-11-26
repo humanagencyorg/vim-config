@@ -2,6 +2,12 @@ set nocompatible
 filetype off
 
 execute pathogen#infect()
+
+" Enable per-project .vimrc configuration files
+set exrc
+" Disable unsafe commands in your project-specific .vimrc files
+set secure
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -21,6 +27,7 @@ Plug 'janko-m/vim-test'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-runner'
 Plug 'chriskempson/base16-vim'
 " Color schemes
 Plug 'drewtempelmeyer/palenight.vim'
@@ -33,6 +40,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 
 Plug 'w0rp/ale'
+
+" Fulltext search
+" Requirements:
+" brew install the_silver_searcher
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Vim snippets
 " Track the engine.
@@ -130,6 +143,9 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
+" NerdTree
+nnoremap <silent> <Leader>v :NERDTreeFind<CR> " open NerdTree on the file you’re editing
+
 nmap <S-Enter> O<Esc>
 
 " Fix files with prettier, and then ESLint.
@@ -137,3 +153,20 @@ let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
 
 " Remove trailing whitespaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" VIM TMUX Integration (https://thoughtbot.com/upcase/videos/tmux-vim-integration)
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+" Run tests in a TMUX window
+let g:rspec_command = "VtrSendCommandToRunner! rspec {spec}"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>f :VtrFocusRunner<cr>
