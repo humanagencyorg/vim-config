@@ -111,6 +111,14 @@ FYI `<leader>` typically refers to the `\` character in VIM
 
 `nmap <C-n> :NERDTreeToggle<CR>`
 
-### NerdTree
+#### NerdTree
 
 `nnoremap <silent> <Leader>v :NERDTreeFind<CR>` - open NerdTree on the file you’re editing
+
+#### Folding Spec and Defs
+
+Use default shortcuts:
+
+`zi` - for folding and unfolding all specs and defs in opened file
+
+`za` - for folding and unfolding test or method on which cursor located
