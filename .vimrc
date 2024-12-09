@@ -153,6 +153,7 @@ nmap <S-Enter> O<Esc>
 
 " Fix files with prettier, and then ESLint.
 let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
+let g:ale_lint_on_text_changed = ‘never’
 
 " Remove trailing whitespaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
