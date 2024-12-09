@@ -1,6 +1,13 @@
 set nocompatible
 filetype off
 
+execute pathogen#infect()
+
+" Enable per-project .vimrc configuration files
+set exrc
+" Disable unsafe commands in your project-specific .vimrc files
+set secure
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -20,6 +27,7 @@ Plug 'janko-m/vim-test'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-runner'
 Plug 'chriskempson/base16-vim'
 " Color schemes
 Plug 'drewtempelmeyer/palenight.vim'
@@ -27,7 +35,9 @@ Plug 'ayu-theme/ayu-vim' " ayu theme
 Plug 'mhartington/oceanic-next'
 Plug 'crusoexia/vim-monokai'
 Plug 'jiangmiao/auto-pairs'
+Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 
 Plug 'w0rp/ale'
 
@@ -41,6 +51,9 @@ Plug 'junegunn/fzf.vim'
 " Track the engine.
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" This plugin provides automatic folding for Rspec files and defs
+Plug 'vim-utils/vim-ruby-fold'
 
 call plug#end()
 
@@ -64,6 +77,7 @@ set tabstop=2       " The width of a TAB is set to 4.
 
 set shiftwidth=2    " Indents will have a width of 4
 set softtabstop=2   " Sets the number of columns for a TAB
+set tabstop=2   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
 
 " Lovely linenumbers
@@ -140,3 +154,23 @@ nmap <S-Enter> O<Esc>
 " Fix files with prettier, and then ESLint.
 let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
 let g:ale_lint_on_text_changed = ‘never’
+
+" Remove trailing whitespaces
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" VIM TMUX Integration (https://thoughtbot.com/upcase/videos/tmux-vim-integration)
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+" Run tests in a TMUX window
+let g:rspec_command = "VtrSendCommandToRunner! rspec {spec}"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>f :VtrFocusRunner<cr>
