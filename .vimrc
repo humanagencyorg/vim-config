@@ -15,13 +15,15 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 Plug 'isRuslan/vim-es6'
 Plug 'vim-ruby/vim-ruby'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-rails'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'wincent/command-t'
 Plug 'thoughtbot/vim-rspec'
+Plug 'jgdavey/tslime.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'janko-m/vim-test'
 Plug 'scrooloose/nerdcommenter'
@@ -38,18 +40,23 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'github/copilot.vim'
 
-Plug 'w0rp/ale'
+imap <silent><script><expr> <C-j> copilot#Next()
+imap <silent><script><expr> <C-k> copilot#Previous()
+imap <silent><script><expr> <C-x> copilot#Dismiss()
+
+"Plug 'w0rp/ale'
 
 " Fulltext search
 " Requirements:
 " brew install the_silver_searcher
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 
 " Vim snippets
 " Track the engine.
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " This plugin provides automatic folding for Rspec files and defs
@@ -64,7 +71,7 @@ set termguicolors
 " Want utf8 at all times
 set termencoding=utf-8
 set encoding=utf-8
-set fileencoding=utf-8
+"set fileencoding=utf-8
 
 set ruler                      " Always show current position
 set cmdheight=1                " Height of the command bar
@@ -151,8 +158,13 @@ nnoremap <silent> <Leader>v :NERDTreeFind<CR> " open NerdTree on the file you’
 
 nmap <S-Enter> O<Esc>
 
+map <leader>tn :tabnew<cr>
+map <leader>t<leader> :tabnext<cr>
+map <leader>tp<leader> :tabprevious<cr>
+map <leader>tc :taclose<cr>
+
 " Fix files with prettier, and then ESLint.
-let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
+"let b:ale_fixers = ['rubocop', 'reek', 'scss_lint']
 
 " Remove trailing whitespaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -167,9 +179,15 @@ nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
 " Run tests in a TMUX window
-let g:rspec_command = "VtrSendCommandToRunner! rspec {spec}"
+let g:rspec_command = "VtrSendCommandToRunner! bundle exec rspec {spec}"
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 map <Leader>f :VtrFocusRunner<cr>
+
+noremap <SPACE> <Nop>
+let mapleader=" "
+
+" TSLime
+let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
